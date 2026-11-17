@@ -5,9 +5,18 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void	bubble_sort(t_list **stack_a);
-void	swap(t_list *node1, t_list *node2, char *s);
+
+
+#include <stdio.h>
+
 int		is_sort(t_list *head);
+
+void	swap(t_list *node1, t_list *node2, char *s);
 t_list	*push(t_list *node, t_list **head, char *s);
+void	r_ab(t_list **head, char *s);
+void	rr_ab(t_list **head, char *s);
+
+void	bubble_sort(t_list **stack_a);
+void	chunk_sort(t_list **stack_a);
 
 #endif

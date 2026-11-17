@@ -15,25 +15,6 @@ int	is_sort(t_list *head)
 	return (1);
 }
 
-void	swap(t_list *node1, t_list *node2, char *s)
-{
-	int tmp = node1->content;
-	node1->content = node2->content;
-	node2->content = tmp;
-	printf("%s\n", s);
-}
-
-t_list	*push(t_list *node, t_list **head, char *s)
-{
-	t_list	*tmp;
-
-	tmp = node->next;
-	node->next = *head;
-	*head = node;
-	printf("%s\n", s);
-	return (tmp);
-}
-
 void	bubble_sort(t_list **stack_a)
 {
 	t_list	*stack_b;
