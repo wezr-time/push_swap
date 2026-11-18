@@ -18,5 +18,6 @@ void	rr_ab(t_list **head, char *s);
 
 void	bubble_sort(t_list **stack_a);
 void	chunk_sort(t_list **stack_a);
+void	radix_sort(t_list **stack_a);
 
 #endif

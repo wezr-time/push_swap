@@ -32,6 +32,30 @@ void	update_index(t_list *list)
 	}
 }
 
+float	compute_disorder(t_list *stack_a)
+{
+	t_list	*curr;
+	int		mistakes;
+	int		total_pairs;
+
+	mistakes = 0;
+	total_pairs = 0;
+	while (stack_a)
+	{
+		curr = stack_a->next;
+		while (curr)
+		{
+			total_pairs += 1;
+			if (stack_a->content > curr->content)
+				mistakes++;
+			curr = curr->next;
+		}
+		stack_a = stack_a->next;
+	}
+	int disorder = ((float)mistakes / total_pairs) * 100;
+	return ((float)disorder / 100);
+}
+
 int main()
 {
 	int arr[10] = {10, 2, 4, 8, 3, -4, 0, 7, 6, 5};
@@ -40,8 +64,11 @@ int main()
 	for (size_t i = 0; i < count; i++)
 		ft_lstadd_back(&stack_a, ft_lstnew(arr[i]));
 	update_index(stack_a);
+
+	printf("disorder: %.2f\n", compute_disorder(stack_a));
 	// bubble_sort(&stack_a); // ==> 79 moves / 12 vs 7
-	chunk_sort(&stack_a);
+	// chunk_sort(&stack_a);
+	radix_sort(&stack_a);
 	printf("\n");
 	t_list *curr = stack_a;
 	while (curr)

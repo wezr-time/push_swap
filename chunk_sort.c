@@ -32,6 +32,7 @@ static int	max_of(t_list *list)
 	}
 	return (pos);
 }
+
 static void	move_to_stack_b(t_list **stack_a, t_list **stack_b)
 {
 	int		limit;
@@ -42,7 +43,7 @@ static void	move_to_stack_b(t_list **stack_a, t_list **stack_b)
 	size = ft_lstsize(*stack_a);
 	chunks = sqrt_of(size);
 	pushed = 0;
-	limit = size / chunks;	
+	limit = size / chunks;
 	while (*stack_a)
 	{
 		if ((*stack_a)->index < limit)
@@ -60,16 +61,18 @@ static void	move_to_stack_b(t_list **stack_a, t_list **stack_b)
 static void	move_to_stack_a(t_list **stack_a, t_list **stack_b)
 {
 	size_t	pos;
+	size_t	size_b;
 
 	while (*stack_b)
 	{
 		pos = max_of(*stack_b);
-		if (pos < ft_lstsize(*stack_b) - pos)
+		size_b = ft_lstsize(*stack_b);
+		if (pos < size_b - pos)
 			while (pos--)
 				r_ab(stack_b, "rb");
 		else
 		{
-			pos = ft_lstsize(*stack_b) - pos;
+			pos = size_b - pos;
 			while (pos--)
 				rr_ab(stack_b, "rrb");
 		}
@@ -82,7 +85,6 @@ void	chunk_sort(t_list **stack_a)
 	t_list	*stack_b;
 
 	stack_b = NULL;
-
 	move_to_stack_b(stack_a, &stack_b);
 	move_to_stack_a(stack_a, &stack_b);
 }

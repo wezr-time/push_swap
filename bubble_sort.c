@@ -1,15 +1,11 @@
 #include "push_swap.h"
 
-
-
-#include <stdio.h>
-
 int	is_sort(t_list *head)
 {
 	while (head && head->next)
 	{
 		if (head->content > head->next->content)
-				return (0);
+			return (0);
 		head = head->next;
 	}
 	return (1);
@@ -34,5 +30,5 @@ void	bubble_sort(t_list **stack_a)
 				swap((stack_b), stack_b->next, "sb");
 			stack_b = push(stack_b, stack_a, "pa");
 		}
-	}	
+	}
 }
