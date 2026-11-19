@@ -24,7 +24,7 @@ int	max_index(t_list *list)
 	return (big);
 }
 
-void	radix_sort(t_list **stack_a)
+void	radix_sort(t_list **stack_a, t_count *count_op)
 {
 	t_list	*stack_b;
 	size_t	max_bits;
@@ -40,12 +40,21 @@ void	radix_sort(t_list **stack_a)
 		while (size--)
 		{
 			if (((*stack_a)->index >> bit) & 1)
+			{
 				r_ab(stack_a, "ra");
+				count_op->ra++;
+			}
 			else
+			{
+				count_op->pb++;
 				*stack_a = push(*stack_a, &stack_b, "pb");
+			}
 		}
 		while (stack_b)
+		{
+			count_op->pa++;
 			stack_b = push(stack_b, stack_a, "pa");
+		}
 		bit++;		
 	}
 }

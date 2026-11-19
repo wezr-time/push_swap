@@ -33,7 +33,8 @@ static int	max_of(t_list *list)
 	return (pos);
 }
 
-static void	move_to_stack_b(t_list **stack_a, t_list **stack_b)
+static void	move_to_stack_b(t_list **stack_a, t_list **stack_b,
+	t_count *count_op)
 {
 	int		limit;
 	int		pushed;
@@ -49,16 +50,21 @@ static void	move_to_stack_b(t_list **stack_a, t_list **stack_b)
 		if ((*stack_a)->index < limit)
 		{
 			*stack_a = push((*stack_a), stack_b, "pb");
+			count_op->pb++;
 			pushed++;
 			if (pushed == limit)
 				limit += size / chunks;
 		}
 		else
+		{
 			r_ab(stack_a, "ra");
+			count_op->ra++;
+		}
 	}
 }
 
-static void	move_to_stack_a(t_list **stack_a, t_list **stack_b)
+static void	move_to_stack_a(t_list **stack_a, t_list **stack_b,
+								t_count *count_op)
 {
 	size_t	pos;
 	size_t	size_b;
@@ -68,23 +74,24 @@ static void	move_to_stack_a(t_list **stack_a, t_list **stack_b)
 		pos = max_of(*stack_b);
 		size_b = ft_lstsize(*stack_b);
 		if (pos < size_b - pos)
-			while (pos--)
+			while (pos-- && count_op->rb++)
 				r_ab(stack_b, "rb");
 		else
 		{
 			pos = size_b - pos;
-			while (pos--)
+			while (pos-- && count_op->rrb++)
 				rr_ab(stack_b, "rrb");
 		}
 		*stack_b = push(*stack_b, stack_a, "pa");
+		count_op->pa++;
 	}
 }
 
-void	chunk_sort(t_list **stack_a)
+void	chunk_sort(t_list **stack_a, t_count *count_op)
 {
 	t_list	*stack_b;
 
 	stack_b = NULL;
-	move_to_stack_b(stack_a, &stack_b);
-	move_to_stack_a(stack_a, &stack_b);
+	move_to_stack_b(stack_a, &stack_b, count_op);
+	move_to_stack_a(stack_a, &stack_b, count_op);
 }
