@@ -24,13 +24,11 @@ static int	smallest_index(t_list	*stack_a)
 	return (pos);
 }
 
-void	selection_sort(t_list **stack_a)
+void	selection_sort(t_list **stack_a, t_list **stack_b)
 {
-	t_list			*stack_b;
 	unsigned int	pos_min;
 	unsigned int	size;
 
-	stack_b = NULL;
 	while (is_sort(*stack_a) != 1)
 	{
 		size = ft_lstsize(*stack_a);
@@ -47,9 +45,9 @@ void	selection_sort(t_list **stack_a)
 					rra(stack_a);
 			}
 			size--;
-			pb(stack_a, &stack_b);
+			pb(stack_a, stack_b);
 		}
-		while (stack_b)
-			pa(&stack_b, stack_a);
+		while (*stack_b)
+			pa(stack_b, stack_a);
 	}
 }

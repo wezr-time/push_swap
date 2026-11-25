@@ -11,6 +11,9 @@ SRCS = helper/fill_stack_a.c \
 		helper/ft_strncmp.c \
 		helper/ft_lstsize.c \
 		helper/is_sort.c \
+		helper/sqrt_of.c \
+		helper/in_range.c \
+		helper/max_of.c \
 		moves/rotate.c \
 		moves/reverse_rotate.c \
 		moves/push.c \

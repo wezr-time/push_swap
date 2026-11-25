@@ -73,7 +73,7 @@ int	main(int ac, char **av)
 	i = 1;
 	validate_flags(av, &flags, &i);
 	fill_stack_a(&stack_a, av + i, ac - i, &gb_c);
-	chunk_sort(&stack_a);
+	// selection_sort(&stack_a);
 	// REMOVE LATER
 	printf("\n===============\n");
 	t_list *curr = stack_a;
