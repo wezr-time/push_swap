@@ -11,11 +11,11 @@ static int	ft_convert_to_nbr(const char *nptr, int sign, t_gb_collector **gb_c,
 	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		nbr = nbr * 10 + nptr[i] - '0';
-		if (nbr > INT_MAX)
+		if (nbr * sign < INT_MIN || nbr * sign > INT_MAX)
 			break ;
 		i++;
 	}
-	if (nbr > INT_MAX || nptr[i] != '\0')
+	if (nbr * sign < INT_MIN || nbr * sign > INT_MAX || nptr[i] != '\0')
 	{
 		printf("Error\n");
 		free_splitted(splitted);

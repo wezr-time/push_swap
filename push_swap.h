@@ -28,6 +28,20 @@ typedef struct s_flags
 	int	is_bench;
 }	t_flags;
 
+typedef struct s_count
+{
+	int	pa;
+	int	pb;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_count;
 
 #include <stdio.h>
 
@@ -40,24 +54,25 @@ size_t	ft_strlen(const	char *str);
 void	free_splitted(char **splitted);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 unsigned int	ft_lstsize(t_list *lst);
+void	is_dup(t_list *stack_a);
 
-void	selection_sort(t_list **stack_a, t_list **stack_b);
+void	selection_sort(t_list **stack_a, t_list **stack_b, t_count *count_ops);
 int	is_sort(t_list *stack_a);
 size_t	sqrt_of(size_t n);
 size_t	in_range(t_list *stack_a, int range);
 size_t	max_of(t_list *stack_b);
 
-void	chunk_sort(t_list **stack_a);
+void	chunk_sort(t_list **stack_a, t_list **stack_b, t_count *count_ops);
 
 
 // Moves
-void	ra(t_list **stack_a);
-void	rb(t_list **stack_b);
+void	ra(t_list **stack_a, t_count *count_ops);
+void	rb(t_list **stack_b, t_count *count_ops);
 
-void	rra(t_list **stack_a);
-void	rrb(t_list **stack_b);
+void	rra(t_list **stack_a, t_count *count_ops);
+void	rrb(t_list **stack_b, t_count *count_ops);
 
-void	pa(t_list **stack_b, t_list **stack_a);
-void	pb(t_list **stack_a, t_list **stack_b);
+void	pa(t_list **stack_b, t_list **stack_a, t_count *count_ops);
+void	pb(t_list **stack_a, t_list **stack_b, t_count *count_ops);
 
 #endif

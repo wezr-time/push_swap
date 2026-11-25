@@ -16,14 +16,16 @@ static void	rotate(t_list **stack)
 	first->next = NULL;
 }
 
-void	ra(t_list **stack_a)
+void	ra(t_list **stack_a, t_count *count_ops)
 {
 	rotate(stack_a);
+	count_ops->ra++;
 	printf("ra\n");
 }
 
-void	rb(t_list **stack_b)
+void	rb(t_list **stack_b, t_count *count_ops)
 {
 	rotate(stack_b);
+	count_ops->rb++;
 	printf("rb\n");
 }

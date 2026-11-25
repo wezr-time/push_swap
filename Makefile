@@ -14,6 +14,7 @@ SRCS = helper/fill_stack_a.c \
 		helper/sqrt_of.c \
 		helper/in_range.c \
 		helper/max_of.c \
+		helper/is_dup.c \
 		moves/rotate.c \
 		moves/reverse_rotate.c \
 		moves/push.c \

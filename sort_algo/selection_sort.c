@@ -24,7 +24,7 @@ static int	smallest_index(t_list	*stack_a)
 	return (pos);
 }
 
-void	selection_sort(t_list **stack_a, t_list **stack_b)
+void	selection_sort(t_list **stack_a, t_list **stack_b, t_count *count_ops)
 {
 	unsigned int	pos_min;
 	unsigned int	size;
@@ -37,17 +37,17 @@ void	selection_sort(t_list **stack_a, t_list **stack_b)
 			pos_min = smallest_index(*stack_a);
 			if (pos_min < size - pos_min)
 				while (pos_min--)
-					ra(stack_a);
+					ra(stack_a, count_ops);
 			else
 			{
 				pos_min = size - pos_min;
 				while (pos_min--)
-					rra(stack_a);
+					rra(stack_a, count_ops);
 			}
 			size--;
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, count_ops);
 		}
 		while (*stack_b)
-			pa(stack_b, stack_a);
+			pa(stack_b, stack_a, count_ops);
 	}
 }
