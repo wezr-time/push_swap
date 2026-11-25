@@ -1,16 +1,14 @@
 #include "../push_swap.h"
 
-// pa pb rra ra
-
-int	smallest(t_list	*stack_a)
+static int	smallest_index(t_list	*stack_a)
 {
 	t_list	*curr;
-	int 	val;
+	int		val;
 	int		pos;
 
 	curr = stack_a;
 	val = curr->nbr;
-	while (curr )
+	while (curr)
 	{
 		if (curr->nbr < val)
 			val = curr->nbr;
@@ -26,37 +24,19 @@ int	smallest(t_list	*stack_a)
 	return (pos);
 }
 
-
-
-
-
-int	is_sort(t_list *stack_a)
-{
-	t_list	*curr;
-
-	curr = stack_a;
-	while (curr && curr->next)
-	{
-		if (curr->nbr > curr->next->nbr)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
-}
-
-void	bubble_sort(t_list **stack_a)
+void	selection_sort(t_list **stack_a)
 {
 	t_list			*stack_b;
 	unsigned int	pos_min;
 	unsigned int	size;
 
 	stack_b = NULL;
-	while (1)
+	while (is_sort(*stack_a) != 1)
 	{
 		size = ft_lstsize(*stack_a);
 		while (*stack_a && (*stack_a)->next)
 		{
-			pos_min = smallest(*stack_a);
+			pos_min = smallest_index(*stack_a);
 			if (pos_min < size - pos_min)
 				while (pos_min--)
 					ra(stack_a);
@@ -70,8 +50,6 @@ void	bubble_sort(t_list **stack_a)
 			pb(stack_a, &stack_b);
 		}
 		while (stack_b)
-			pa(&stack_b, stack_a);		
-		if (is_sort(*stack_a) == 1)
-			return ;
+			pa(&stack_b, stack_a);
 	}
 }

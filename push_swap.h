@@ -41,7 +41,11 @@ void	free_splitted(char **splitted);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 unsigned int	ft_lstsize(t_list *lst);
 
-void	bubble_sort(t_list **stack_a);
+void	selection_sort(t_list **stack_a);
+int	is_sort(t_list *stack_a);
+
+void	chunk_sort(t_list **stack_a);
+
 
 // Moves
 void	ra(t_list **stack_a);

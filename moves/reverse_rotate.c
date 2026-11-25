@@ -7,7 +7,6 @@ static void	reverse_rotate(t_list **stack)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
-	
 	prev = *stack;
 	while (prev && prev->next && prev->next->next)
 		prev = prev->next;

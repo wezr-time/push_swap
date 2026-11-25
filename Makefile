@@ -10,11 +10,13 @@ SRCS = helper/fill_stack_a.c \
 		helper/ft_strlen.c \
 		helper/ft_strncmp.c \
 		helper/ft_lstsize.c \
-		helper/rotate.c \
-		helper/reverse_rotate.c \
-		helper/push.c \
+		helper/is_sort.c \
+		moves/rotate.c \
+		moves/reverse_rotate.c \
+		moves/push.c \
 		garbage_collector/garbage_collector.c \
-		sort_algo/bubble_sort.c
+		sort_algo/selection_sort.c \
+		sort_algo/chunk_sort.c
 
 HEADERS = push_swap.h garbage_collector/garbage_collector.h 
 

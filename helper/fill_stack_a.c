@@ -48,6 +48,34 @@ void	free_splitted(char **splitted)
 	free(splitted);
 }
 
+t_list	*get_min(t_list *list)
+{
+	t_list	*min;
+
+	min = NULL;
+	while (list)
+	{
+		if (list->index == -1 && (min == NULL || list->nbr < min->nbr))
+			min = list;
+		list = list->next;
+	}
+	return (min);
+}
+
+void	update_index(t_list *stack_a)
+{
+	t_list	*min;
+	size_t	i;
+
+	i = 0;
+	min = get_min(stack_a);
+	while (min)
+	{
+		min->index = i++;
+		min = get_min(stack_a);
+	}
+}
+
 void	fill_stack_a(t_list **stack_a, char **av, int ac, t_gb_collector **gb_c)
 {
 	int		i;
@@ -68,4 +96,5 @@ void	fill_stack_a(t_list **stack_a, char **av, int ac, t_gb_collector **gb_c)
 		i++;
 		free_splitted(splitted);
 	}
+	update_index(*stack_a);
 }
