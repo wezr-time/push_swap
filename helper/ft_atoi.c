@@ -30,7 +30,6 @@ int	ft_atoi(const char *nptr, t_gb_collector **gb_c, char **splitted)
 	size_t	i;
 	int		sign;
 
-	printf("|%s|\n", nptr);
 	if (!*nptr)
 		return (0);
 	i = 0;

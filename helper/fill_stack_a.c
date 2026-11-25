@@ -53,7 +53,7 @@ void	fill_stack_a(t_list **stack_a, char **av, int ac, t_gb_collector **gb_c)
 	int		i;
 	char	**splitted;
 
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		splitted = ft_split(av[i], ' ');
