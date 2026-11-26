@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bubble_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:00:19 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/26 11:08:34 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:43:53 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	bubble_sort(t_list **a, t_list **b, t_count *ops)
-{
-	while (is_sort(*a) != 1)
-	{
-		while (*a && (*a)->next)
-		{
-			if ((*a)->content > (*a)->next->content)
-				sa(*a, ops);
-			pb(a, b, ops);
-		}
-		while (*b)
-		{
-			if ((*b)->next && (*b)->content < (*b)->next->content)
-				sb(*b, ops);
-			pa(b, a, ops);
-		}
-	}
-}
 
 static int	smallest_index(t_list	*a)
 {

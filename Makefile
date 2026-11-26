@@ -7,7 +7,7 @@ RM			= rm -f
 
 SRC_MAIN	= push_swap.c
 
-SRCS		= sort_algorithms/bubble_sort.c \
+SRCS		= sort_algorithms/selection_sort.c \
 			sort_algorithms/chunk_sort.c \
 			sort_algorithms/radix_sort.c \
 			helper/ft_atoi.c \
