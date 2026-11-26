@@ -58,40 +58,39 @@ void	validate_flags(char **av, t_flags *flags, int *i)
 		flags->is_adaptive = 1;
 }
 
-float	compute_disorder(t_list *stack)
+//
+
+float	compute_disorder(t_list *stack_a)
 {
 	t_list	*curr;
-	int	mistakes;
-	int	total;
+	int		mistakes;
+	int		total_pairs;
 
-	total = 0;
 	mistakes = 0;
-	while (stack)
+	total_pairs = 0;
+	while (stack_a)
 	{
-		curr = stack->next;
+		curr = stack_a->next;
 		while (curr)
 		{
-			total++;
-			if (curr->nbr < stack->nbr)
+			total_pairs += 1;
+			if (stack_a->nbr > curr->nbr)
 				mistakes++;
 			curr = curr->next;
 		}
-		stack = stack->next;
+		stack_a = stack_a->next;
 	}
-	return ((float)mistakes / total);
+	return ((float)mistakes / total_pairs);
 }
 
 void	adapt_algo(t_list **stack_a, t_flags *flags, t_list **stack_b, t_count *count_ops)
 {
-	float	disorder;
-
-	disorder = compute_disorder(*stack_a);
-	if (disorder < 0.2)
+	if (count_ops->disorder < 0.2)
 	{
 		flags->is_simple = 1;
 		selection_sort(stack_a, stack_b, count_ops);
 	}
-	else if (disorder < 0.5)
+	else if (count_ops->disorder < 0.5)
 	{
 		flags->is_medium = 1;
 		chunk_sort(stack_a, stack_b, count_ops);
@@ -109,12 +108,9 @@ int	ft_sum(t_count *count_ops)
 	count_ops->ra + count_ops->rb + count_ops->rr + count_ops->rra + count_ops->rrb + count_ops->rrr);
 }
 
-void	call_bench(t_list *stack_a, t_flags *flags, t_count *count_ops)
+void	call_bench(t_flags *flags, t_count *count_ops)
 {
-	float	disorder;
-
-	disorder = compute_disorder(stack_a);
-	printf("[bench] disorder: %f%%\n", disorder * 100);
+	printf("[bench] disorder: %f%%\n", count_ops->disorder * 100);
 	printf("[bench] strategy: ");
 	if (flags->is_adaptive == 1)
 		printf("Adaptive / ");
@@ -142,16 +138,17 @@ void	ft_sort(t_list **stack_a, t_flags *flags, t_count *count_ops)
 	t_list	*stack_b;
 
 	stack_b = NULL;
+	count_ops->disorder = compute_disorder(*stack_a);
 	if (flags->is_simple == 1)
 		selection_sort(stack_a, &stack_b, count_ops);
 	else if (flags->is_medium == 1)
 		chunk_sort(stack_a, &stack_b, count_ops);
 	else if (flags->is_complex == 1)
 		return ;
-	else if (flags->is_adaptive == 1)
+	else
 		adapt_algo(stack_a, flags, &stack_b, count_ops);
 	if (flags->is_bench == 1)
-		call_bench(*stack_a, flags, count_ops);
+		call_bench(flags, count_ops);
 }
 
 int	main(int ac, char **av)
@@ -174,13 +171,13 @@ int	main(int ac, char **av)
 	is_dup(stack_a);
 	ft_sort(&stack_a, &flags, &count_ops);
 	// REMOVE LATER
-	// printf("\n===============\n");
-	// t_list *curr = stack_a;
-	// while (curr)
-	// {
-	// 	printf("%d ", curr->nbr);
-	// 	curr = curr->next;
-	// }
-	// printf("\n===============\n");
+	printf("\n===============\n");
+	t_list *curr = stack_a;
+	while (curr)
+	{
+		printf("%d ", curr->nbr);
+		curr = curr->next;
+	}
+	printf("\n===============\n");
 	clean_gb(&gb_c);
 }

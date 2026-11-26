@@ -1,6 +1,5 @@
 #include "../push_swap.h"
 
-// pa pb ra rb rrb
 static void	bring_to_top_a(t_list **stack_a, size_t limit, size_t size, t_count *count_ops)
 {
 	size_t	pos;
@@ -32,29 +31,26 @@ static void	bring_to_top_b(t_list **stack_b, size_t pos, size_t size, t_count *c
 
 static void	phase_1(t_list **stack_a, t_list **stack_b, t_count *count_ops)
 {
-	size_t		n_chunks;
 	size_t		size;
-	int			chunk;
+	int			offset;
 	int			pushed;
-	int			limit;
 
 	size = ft_lstsize(*stack_a);
-	n_chunks = sqrt_of(size);
-	chunk = size / n_chunks;
-	limit = chunk;
+	offset = sqrt_of(size);
 	pushed = 0;
 	while (*stack_a)
 	{
-		if (pushed == limit)
-			limit += chunk;
-		if ((*stack_a)->index < limit)
+		if ((*stack_a)->index <= pushed + offset)
 		{
-			pb(stack_a, stack_b, count_ops);
+			// 2n --> n
+			pb(stack_a, stack_b, count_ops); // n
+			if ((*stack_b)->index <= pushed)
+				rb(stack_b, count_ops); // n
 			pushed++;
 			size--;
 		}
 		else
-			bring_to_top_a(stack_a, limit, size, count_ops);
+			bring_to_top_a(stack_a, pushed + offset + 1, size, count_ops);
 	}
 }
 
@@ -75,6 +71,8 @@ static void	phase_2(t_list **stack_a, t_list **stack_b, t_count *count_ops)
 
 void	chunk_sort(t_list **stack_a, t_list **stack_b, t_count *count_ops)
 {
+	if (is_sort(*stack_a))
+		return ;
 	phase_1(stack_a, stack_b, count_ops);
 	phase_2(stack_a, stack_b, count_ops);
 }

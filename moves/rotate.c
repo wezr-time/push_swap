@@ -5,8 +5,6 @@ static void	rotate(t_list **stack)
 	t_list	*first;
 	t_list	*last;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-		return ;
 	first = (*stack);
 	last = first;
 	while (last && last->next)
@@ -18,6 +16,8 @@ static void	rotate(t_list **stack)
 
 void	ra(t_list **stack_a, t_count *count_ops)
 {
+	if (!(*stack_a) || !(*stack_a)->next)
+		return ;
 	rotate(stack_a);
 	count_ops->ra++;
 	printf("ra\n");
@@ -25,6 +25,8 @@ void	ra(t_list **stack_a, t_count *count_ops)
 
 void	rb(t_list **stack_b, t_count *count_ops)
 {
+	if (!(*stack_b) || !(*stack_b)->next)
+		return ;
 	rotate(stack_b);
 	count_ops->rb++;
 	printf("rb\n");

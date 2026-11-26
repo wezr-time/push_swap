@@ -30,17 +30,18 @@ typedef struct s_flags
 
 typedef struct s_count
 {
-	int	pa;
-	int	pb;
-	int	sa;
-	int	sb;
-	int	ss;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
+	int		pa;
+	int		pb;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	float	disorder;
 }	t_count;
 
 #include <stdio.h>
