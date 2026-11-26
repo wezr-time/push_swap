@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/20 14:58:29 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 11:38:35 by mamehri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -89,12 +101,14 @@ char	**ft_split(char const *s, char c)
 	size_t	count;
 	char	**splitted;
 
-	if (!s)
+	if (!s || !*s)
 		return (NULL);
 	i = 0;
 	while (s[i] && s[i] == c)
 		i++;
 	count = ft_countwords(s, c, i);
+	if (!count)
+		return (NULL);
 	splitted = malloc((count + 1) * sizeof(char *));
 	if (!splitted)
 		return (NULL);

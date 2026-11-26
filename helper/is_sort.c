@@ -1,15 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_sort.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/21 14:44:31 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 14:44:32 by mamehri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int	is_sort(t_list *stack_a)
+int	is_sort(t_list *head)
 {
-	t_list	*curr;
-
-	curr = stack_a;
-	while (curr && curr->next)
+	while (head && head->next)
 	{
-		if (curr->nbr > curr->next->nbr)
+		if (head->content > head->next->content)
 			return (0);
-		curr = curr->next;
+		head = head->next;
 	}
 	return (1);
 }
