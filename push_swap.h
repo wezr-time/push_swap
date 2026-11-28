@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/26 13:28:04 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/26 13:28:05 by ymoubtas         ###   ########.fr       */
+/*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/27 16:43:52 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "ft_dprintf/ft_dprintf.h"
+# include "ft_dprintf.h"
 # include <stdlib.h>
 # include <limits.h>
 
@@ -61,9 +61,11 @@ void			pb(t_list **a, t_list **b, t_count *ops);
 
 void			rra(t_list **a, t_count *ops);
 void			rrb(t_list **b, t_count *ops);
+void			rrr(t_list **a, t_list **b, t_count *ops);
 
 void			ra(t_list **a, t_count *ops);
 void			rb(t_list **b, t_count *ops);
+void			rr(t_list **a, t_list **b, t_count *ops);
 
 void			sa(t_list *a, t_count *ops);
 void			sb(t_list *b, t_count *ops);
